@@ -113,4 +113,13 @@ defmodule GildedRoseTest do
       assert GildedRose.update_quality(fixture) == expected
     end
   end
+
+  describe "when item is 'Conjured'" do
+    test "degrade quality by 2" do
+      fixture = [%Item{name: "Conjured", sell_in: 9, quality: 10}]
+      expected = [%Item{name: "Conjured", sell_in: 8, quality: 8}]
+
+      assert GildedRose.update_quality(fixture) == expected
+    end
+  end
 end

@@ -74,6 +74,13 @@ defmodule GildedRose do
         true ->
           item
       end
+    item =
+      cond do
+        item.name != "Conjured" ->
+          item
+        true ->
+          %{ item | quality: item.quality - 1}
+      end
 
     cond do
       item.sell_in < 0 ->
