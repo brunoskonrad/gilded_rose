@@ -8,8 +8,19 @@ defmodule GildedRose do
   end
 
   def update_item(item) do
-    updater = ItemUpdater.get(item)
+    updater = ItemUpdater.get(item.name)
 
-    updater.update_item(item)
+    item
+    |> updater.update_item
+    |> normalize_quality
+  end
+
+  defp normalize_quality(%Item{name: name, sell_in: sell_in, quality: quality})
+       when quality > 50 do
+    %Item{name: name, sell_in: sell_in, quality: 50}
+  end
+
+  defp normalize_quality(%Item{name: name, sell_in: sell_in, quality: quality}) do
+    %Item{name: name, sell_in: sell_in, quality: quality}
   end
 end

@@ -1,21 +1,21 @@
 defmodule ItemUpdater do
-  def get(%Item{name: "Sulfuras", sell_in: _sell_in, quality: _quality}) do
+  def get("Sulfuras") do
     Item.Sulfuras
   end
 
-  def get(%Item{name: "Aged Brie", sell_in: _sell_in, quality: _quality}) do
+  def get("Aged Brie") do
     Item.AgedBrie
   end
 
-  def get(%Item{name: "Backstage passes", sell_in: _sell_in, quality: _quality}) do
+  def get("Backstage passes") do
     Item.BackstagePasses
   end
 
-  def get(%Item{name: "Conjured", sell_in: _sell_in, quality: _quality}) do
+  def get("Conjured") do
     Item.Conjured
   end
 
-  def get(%Item{name: _name, sell_in: _sell_in, quality: _quality}) do
+  def get(_name) do
     Item.Regular
   end
 end
