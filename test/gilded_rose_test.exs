@@ -71,6 +71,13 @@ defmodule GildedRoseTest do
   end
 
   describe "when item is 'Backstage passes'" do
+    test "increases quality by 1 when sell_in is more than 11" do
+      fixture = [%Item{name: "Backstage passes", sell_in: 11, quality: 5}]
+      expected = [%Item{name: "Backstage passes", sell_in: 10, quality: 6}]
+
+      assert GildedRose.update_quality(fixture) == expected
+    end
+
     test "increases quality by 2 when sell_in is 10 days or less" do
       fixture = [%Item{name: "Backstage passes", sell_in: 9, quality: 1}]
       expected = [%Item{name: "Backstage passes", sell_in: 8, quality: 3}]
@@ -88,13 +95,6 @@ defmodule GildedRoseTest do
     test "quality drops to 0 after the concert" do
       fixture = [%Item{name: "Backstage passes", sell_in: 0, quality: 40}]
       expected = [%Item{name: "Backstage passes", sell_in: -1, quality: 0}]
-
-      assert GildedRose.update_quality(fixture) == expected
-    end
-
-    test "increases quality by one when sell_in is more than 11" do
-      fixture = [%Item{name: "Backstage passes", sell_in: 11, quality: 5}]
-      expected = [%Item{name: "Backstage passes", sell_in: 10, quality: 6}]
 
       assert GildedRose.update_quality(fixture) == expected
     end
